@@ -53,7 +53,7 @@ A modern, responsive admin dashboard built with React and Vite for managing inve
 
 - **Monthly Sales Reports** - Detailed breakdowns by period
 - **Dead Stock Analysis** - Identify slow-moving inventory
-- **Profit Summary** - Revenue vs. cost analysis
+- **Profit Summary** - Revenue vs cost analysis
 - **Export Options** - Download reports in PDF/Excel format
 
 ### 🔐 Authentication & Security
