@@ -1,15 +1,6 @@
-// import { configureStore } from "@reduxjs/toolkit";
-// import userReducer from "./UsersSlice";
-
-// const store = configureStore({
-//   reducer: {
-//     user: userReducer,
-//   },
-// });
-
-// export default store;
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./UsersSlice";
+import axios from "axios";
 
 // Function to load state from local storage
 const loadState = () => {
@@ -36,6 +27,11 @@ const saveState = (state) => {
 
 const preloadedState = loadState();
 
+// Set axios header IMMEDIATELY if token exists in preloaded state
+if (preloadedState?.user?.token) {
+  axios.defaults.headers.common["Authorization"] = `Bearer ${preloadedState.user.token}`;
+}
+
 const store = configureStore({
   reducer: {
     user: userReducer,
@@ -45,7 +41,15 @@ const store = configureStore({
 
 // Subscribe to store updates and save state to local storage
 store.subscribe(() => {
-  saveState(store.getState());
+  const state = store.getState();
+  saveState(state);
+  
+  // Sync axios authorization header with Redux token state
+  if (state.user.token) {
+    axios.defaults.headers.common["Authorization"] = `Bearer ${state.user.token}`;
+  } else {
+    delete axios.defaults.headers.common["Authorization"];
+  }
 });
 
 export default store;

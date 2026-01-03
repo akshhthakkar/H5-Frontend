@@ -11,11 +11,14 @@ import Input from "../components/Input";
 import Button from "../components/Button";
 import { GoogleLogin } from "@react-oauth/google";
 import { FcGoogle } from "react-icons/fc";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const SignUp = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [errorMessage, setErrorMessage] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const initialValues = {
     username: "",
@@ -127,27 +130,46 @@ const SignUp = () => {
               onBlur={handleBlur}
               error={touched.mobile && errors.mobile}
             />
-            <Input
-              id="password"
-              name="password"
-              label="Password"
-              type="password"
-              placeholder="Create a password"
-              value={values.password}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={touched.password && errors.password}
-            />
-            <Input
-              id="confirmPassword"
-              name="confirmPassword"
-              label="Confirm Password"
-              type="password"
-              placeholder="Confirm your password"
-              value={values.confirmPassword}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={touched.confirmPassword && errors.confirmPassword}
+            <div className="relative">
+              <Input
+                id="password"
+                name="password"
+                label="Password"
+                type={showPassword ? "text" : "password"}
+                placeholder="Create a password"
+                value={values.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={touched.password && errors.password}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-[38px] text-gray-500 hover:text-gray-700 focus:outline-none"
+              >
+                {showPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
+              </button>
+            </div>
+            <div className="relative">
+              <Input
+                id="confirmPassword"
+                name="confirmPassword"
+                label="Confirm Password"
+                type={showConfirmPassword ? "text" : "password"}
+                placeholder="Confirm your password"
+                value={values.confirmPassword}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={touched.confirmPassword && errors.confirmPassword}
+              />
+              <button
+                type="button"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                className="absolute right-3 top-[38px] text-gray-500 hover:text-gray-700 focus:outline-none"
+              >
+                {showConfirmPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
+              </button>
+            </div>
             />
 
             <Button

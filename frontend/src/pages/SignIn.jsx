@@ -11,10 +11,12 @@ import Button from "../components/Button";
 import toast from "react-hot-toast";
 import { GoogleLogin } from "@react-oauth/google";
 import { FcGoogle } from "react-icons/fc";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleGoogleSuccess = async (credentialResponse) => {
     try {
@@ -104,17 +106,26 @@ const SignIn = () => {
               onBlur={handleBlur}
               error={touched.username && errors.username}
             />
-            <Input
-              id="password"
-              name="password"
-              label="Password"
-              type="password"
-              placeholder="Enter your password"
-              value={values.password}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={touched.password && errors.password}
-            />
+            <div className="relative">
+              <Input
+                id="password"
+                name="password"
+                label="Password"
+                type={showPassword ? "text" : "password"}
+                placeholder="Enter your password"
+                value={values.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={touched.password && errors.password}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-[38px] text-gray-500 hover:text-gray-700 focus:outline-none"
+              >
+                {showPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
+              </button>
+            </div>
             <div className="flex justify-between items-center mb-6">
               <label className="flex items-center text-sm text-gray-600">
                 <input type="checkbox" className="mr-2" /> Remember me
