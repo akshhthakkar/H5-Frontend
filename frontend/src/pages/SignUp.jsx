@@ -172,7 +172,6 @@ const SignUp = () => {
                 </button>
               }
             />
-            />
 
             <Button
               type="submit"
