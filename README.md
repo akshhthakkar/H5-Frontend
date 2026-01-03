@@ -1,221 +1,262 @@
-# Inframax - Admin Dashboard Frontend
+# Inframax Admin Dashboard
 
-A modern, responsive admin dashboard built with React and Vite for managing business operations including inventory, sales, billing, and reporting.
+<div align="center">
 
-## 🚀 Features
+![React](https://img.shields.io/badge/React-19.1.0-blue?logo=react)
+![Vite](https://img.shields.io/badge/Vite-6.3.5-purple?logo=vite)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.1.18-38bdf8?logo=tailwindcss)
+![Material-UI](https://img.shields.io/badge/MUI-7.1.0-007FFF?logo=mui)
+![Redux](https://img.shields.io/badge/Redux-2.8.2-764ABC?logo=redux)
+![License](https://img.shields.io/badge/License-Proprietary-red)
 
-- **Dashboard Analytics** - Real-time business metrics and insights with interactive charts
-- **Inventory Management** - Track and manage product inventory
-- **Sales Management** - Process and monitor sales transactions
-- **Billing System** - Generate and manage bills
-- **Supply Chain** - Manage supply operations and vendors
-- **Category Management** - Organize products by categories
-- **Reports** - Comprehensive business reports and analytics
-- **User Authentication** - Secure login with Google OAuth integration
-- **Profile Management** - User profile and settings
-- **Notifications** - Real-time notifications system
-- **Responsive Design** - Mobile-friendly interface with Tailwind CSS
+</div>
 
-## 🛠️ Tech Stack
+A modern, responsive admin dashboard built with React and Vite for managing inventory, sales, billing, supply chain, and business analytics.
 
-- **Framework:** React 19.1.0
-- **Build Tool:** Vite 6.3.5
-- **Styling:** Tailwind CSS 4.1.18
-- **UI Components:** Material-UI (MUI) 7.1.0
-- **State Management:** Redux Toolkit 2.8.2
-- **Routing:** React Router DOM 7.6.1
-- **Form Handling:** Formik 2.4.6 + Yup 1.6.1
-- **Charts:** Chart.js 4.4.9 with React-Chartjs-2
-- **HTTP Client:** Axios 1.9.0
-- **Authentication:** React OAuth Google 0.13.4
-- **Notifications:** React Hot Toast 2.6.0 + React Toastify 11.0.5
-- **Icons:** React Icons 5.5.0 + MUI Icons
+## ✨ Features
 
-## 📋 Prerequisites
+### 📊 Dashboard & Analytics
 
-Before you begin, ensure you have the following installed:
+- **Real-time Metrics** - Live business KPIs and performance indicators
+- **Interactive Charts** - Dynamic visualizations using Chart.js (Line, Bar, Pie, Doughnut)
+- **Sales Trends** - Track revenue and profit trends over time
+- **Top Products** - Identify best-performing inventory items
 
-- Node.js (v18 or higher)
-- npm or yarn package manager
+### 📦 Inventory Management
 
-## 🔧 Installation
+- **Product Catalog** - Complete product database with images (Cloudinary integration)
+- **Stock Tracking** - Real-time inventory levels and alerts
+- **Category Organization** - System and custom categories for better organization
+- **Low Stock Alerts** - Automatic notifications when inventory runs low
+- **Bulk Operations** - Import/export products, batch updates
 
-1. Clone the repository:
+### 💰 Sales & Billing
 
-```bash
-git clone https://github.com/akshhthakkar/H5-Frontend.git
-cd H5-Frontend/frontend
-```
+- **Quick Sale Processing** - Fast checkout with barcode scanning
+- **Invoice Generation** - Professional PDF bills with company branding
+- **Payment Tracking** - Multiple payment methods support
+- **Customer Management** - Track customer purchase history
+- **Profit Calculation** - Automatic profit tracking (selling price - cost price)
 
-2. Install dependencies:
+### 🚚 Supply Chain
 
-```bash
-npm install
-```
+- **Supplier Management** - Maintain supplier database
+- **Purchase Orders** - Create and track orders
+- **Stock Replenishment** - Smart restock suggestions based on sales forecast
+- **Restock History** - Complete audit trail of all inventory additions
 
-3. Set up environment variables:
-   Create a `.env` file in the frontend directory and add necessary configuration:
+### 📈 Reports & Analytics
 
-```env
-VITE_API_URL=your_api_url
-VITE_GOOGLE_CLIENT_ID=your_google_client_id
-```
+- **Monthly Sales Reports** - Detailed breakdowns by period
+- **Dead Stock Analysis** - Identify slow-moving inventory
+- **Profit Summary** - Revenue vs. cost analysis
+- **Export Options** - Download reports in PDF/Excel format
 
-## 🚀 Getting Started
+### 🔐 Authentication & Security
 
-### Development Mode
+- **Google OAuth 2.0** - One-click social login
+- **Email/Password Auth** - Traditional authentication
+- **Password Reset** - Secure password recovery flow
+- **JWT Tokens** - Secure session management
+- **Protected Routes** - Role-based access control
 
-Run the development server:
+### 🎨 User Experience
 
-```bash
-npm run dev
-```
+- **Responsive Design** - Works on desktop, tablet, and mobile
+- **Dark/Light Mode** - User preference support (coming soon)
+- **Toast Notifications** - Real-time feedback for actions
+- **Drag & Drop** - Intuitive file uploads and reordering
+- **Form Validation** - Client-side validation with Formik + Yup
+- **Loading States** - Skeleton loaders and progress indicators
+- **Error Handling** - Graceful error messages and recovery
 
-## 🎨 Key Features Details
+### 🔔 Notifications
 
-### Authentication
+- **Real-time Alerts** - Low stock, new orders, system updates
+- **Notification Center** - Centralized notification management
+- **Mark as Read** - Track notification status
+- **Priority Levels** - Categorize by urgency
 
-- Google OAuth 2.0 integration
-- Email/Password authentication
-- Password reset functionality
-- Protected routes
+## 🛠 Tech Stack
+
+### Core
+
+- **React** 19.1.0 - Latest React with improved hooks and concurrent features
+- **Vite** 6.3.5 - Lightning-fast HMR and optimized builds
+- **JavaScript (ES6+)** - Modern JavaScript features
+
+### Styling & UI
+
+- **Tailwind CSS** 4.1.18 - Utility-first CSS framework
+- **Material-UI (MUI)** 7.1.0 - Enterprise-grade React components
+- **PostCSS** 8.5.6 - CSS transformations and autoprefixing
+- **React Icons** 5.5.0 - Popular icon packs (FontAwesome, Material, etc.)
+- **Bootstrap** 5.3.6 - Additional UI utilities
 
 ### State Management
 
-- Redux Toolkit for global state
-- Custom hooks for local state management
-- Persistent authentication state
+- **Redux Toolkit** 2.8.2 - Simplified Redux with best practices
+- **React Redux** 9.2.0 - Official React bindings for Redux
+- **Persistent State** - Local storage integration
 
-### UI/UX
+### Forms & Validation
 
-- Modern and clean interface
-- Responsive design for all screen sizes
-- Loading states and error handling
-- Toast notifications for user feedback
-- Drag and drop functionality
+- **Formik** 2.4.6 - Form state management
+- **Yup** 1.6.1 - Schema validation
+- **Real-time Validation** - Instant feedback on user input
 
-### Charts & Analytics
+### Data Visualization
 
-- Interactive charts using Chart.js
-- Real-time data visualization
-- Multiple chart types support
+- **Chart.js** 4.4.9 - Powerful charting library
+- **React-Chartjs-2** 5.3.1 - React wrapper for Chart.js
+- **Custom Dashboards** - Drag-and-drop chart configuration
+
+### Routing & Navigation
+
+- **React Router DOM** 7.6.1 - Client-side routing
+- **Protected Routes** - Authentication-based navigation
+- **Dynamic Breadcrumbs** - Automatic route-based breadcrumbs
+
+### API & Authentication
+
+- **Axios** 1.9.0 - Promise-based HTTP client
+- **React OAuth Google** 0.13.4 - Google sign-in integration
+- **JWT** - Secure token-based authentication
+- **Interceptors** - Request/response middleware
+
+### Notifications & Feedback
+
+- **React Hot Toast** 2.6.0 - Beautiful toast notifications
+- **React Toastify** 11.0.5 - Additional notification options
+- **Sound Alerts** - Audio feedback for important events (optional)
+
+### Utilities
+
+- **React Draggable** 4.4.6 - Drag and drop functionality
+- **Date Formatting** - Smart date/time displays
+- **Number Formatting** - Currency and number utilities
+
+### Development Tools
+
+- **ESLint** 9.27.0 - Code linting and quality checks
+- **Autoprefixer** 10.4.23 - Automatic vendor prefixes
+- **Hot Module Replacement** - Instant updates during development
+
+## 📦 Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/akshhthakkar/H5-Frontend.git
+cd H5-Frontend/frontend
+
+# Install dependencies
+npm install
+
+# Set up environment variables
+# Create a .env file with:
+# VITE_API_URL=your_api_url
+# VITE_GOOGLE_CLIENT_ID=your_google_client_id
+
+# Start development server
+npm run dev
+```
+
+## 🚀 Available Scripts
+
+- `npm run dev` - Start development server on http://localhost:5173
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+
+## 📁 Project Structure
+
+```
+frontend/
+├── src/
+│   ├── components/          # Reusable UI components
+│   │   ├── Button.jsx      # Custom button component
+│   │   ├── Card.jsx        # Card containers
+│   │   ├── Header.jsx      # Application header
+│   │   ├── Sidebar.jsx     # Navigation sidebar
+│   │   ├── Modal.jsx       # Modal dialogs
+│   │   ├── Input.jsx       # Form inputs
+│   │   └── CameraCapture.jsx # Camera integration
+│   ├── pages/              # Page components
+│   │   ├── Dashboard.jsx   # Main dashboard with analytics
+│   │   ├── Inventory.jsx   # Product management
+│   │   ├── Sales.jsx       # Sales transactions
+│   │   ├── Bills.jsx       # Invoice management
+│   │   ├── Supply.jsx      # Supply chain & restocking
+│   │   ├── Categories.jsx  # Category management
+│   │   ├── Reports.jsx     # Business reports
+│   │   ├── Profile.jsx     # User profile settings
+│   │   ├── Notifications.jsx # Notification center
+│   │   ├── SignIn.jsx      # Login page
+│   │   ├── SignUp.jsx      # Registration page
+│   │   ├── ForgotPassword.jsx # Password reset request
+│   │   ├── ResetPassword.jsx # Password reset form
+│   │   └── AuthCallback.jsx # OAuth callback handler
+│   ├── layouts/            # Layout wrappers
+│   │   ├── MainLayout.jsx  # Authenticated app layout
+│   │   └── AuthLayout.jsx  # Auth pages layout
+│   ├── redux/              # State management
+│   │   ├── store.jsx       # Redux store configuration
+│   │   └── UsersSlice.jsx  # User state slice
+│   ├── hooks/              # Custom React hooks
+│   │   └── useAuth.jsx     # Authentication hook
+│   ├── App.jsx             # Main app component & routing
+│   ├── main.jsx            # Application entry point
+│   └── index.css           # Global styles & Tailwind
+├── public/                 # Static assets
+├── index.html              # HTML template
+├── package.json            # Dependencies and scripts
+├── vite.config.js          # Vite configuration
+├── tailwind.config.js      # Tailwind CSS configuration
+├── postcss.config.js       # PostCSS configuration
+└── vercel.json             # Vercel deployment configuration
+```
+
+## 🎯 Key Highlights
+
+- ⚡ **Blazing Fast** - Vite's instant HMR for rapid development
+- 🎨 **Modern UI** - Clean, professional Material Design interface
+- 📱 **Mobile First** - Fully responsive on all devices
+- 🔒 **Secure** - Industry-standard authentication and authorization
+- 📊 **Data-Driven** - Real-time analytics and insights
+- 🧩 **Modular** - Component-based architecture for easy maintenance
+- 🚀 **Production Ready** - Optimized builds with code splitting
+- ♿ **Accessible** - WCAG compliance for inclusive design
+- 🌐 **Cloud Ready** - Configured for Vercel deployment
 
 ## 🌐 Deployment
 
-The project is configured for deployment on Vercel. The `vercel.json` file contains the necessary configuration.
+Configured for Vercel deployment. Deploy by:
 
-To deploy:
+1. Push to GitHub
+2. Import project in Vercel dashboard
+3. Add environment variables:
+   ```
+   VITE_API_URL=https://your-backend-api.com
+   VITE_GOOGLE_CLIENT_ID=your_google_client_id
+   ```
+4. Deploy automatically on every push
 
-1. Push your code to GitHub
-2. Connect your repository to Vercel
-3. Configure environment variables in Vercel dashboard
-4. Deploy
+### Other Platforms
+
+Compatible with Netlify, Render, Railway, and other static hosting services.
+
+**Build Configuration:**
+
+- Build Command: `npm run build`
+- Output Directory: `dist`
+- Node Version: 18.x or higher
 
 ## 👥 Contributors
-
-This project was developed by:
 
 - **Aksh Thakkar** - [@akshhthakkar](https://github.com/akshhthakkar)
 - **Yash Chauhan** - [@Yash08238](https://github.com/Yash08238)
 - **Smit Chauhan** - [@Smit070](https://github.com/Smit070)
 
-## 🏢 Company
-
-**Inframax**VITE_API_URL=https://your-backend-url.com/api
-
-````
-
-### ⚠️ Pre-Deployment Checklist
-
-| Item                  | Status | Notes                                            |
-| --------------------- | ------ | ------------------------------------------------ |
-| Environment Variables | ⚠️     | Replace all `localhost:3000` with production URL |
-| API Base URL          | ⚠️     | Create `.env` for frontend with `VITE_API_URL`   |
-| CORS Settings         | ⚠️     | Update `app.js` to allow production domain       |
-| MongoDB               | ⚠️     | Use MongoDB Atlas for production                 |
-| Cloudinary            | ✅     | Already cloud-based                              |
-| Email                 | ✅     | Gmail works, consider SendGrid for production    |
-| JWT Secret            | ⚠️     | Use strong, unique secret                        |
-| HTTPS                 | ⚠️     | Required for production                          |
-
-### Required Changes for Production
-
-1. **Update API URLs** - Replace all `http://localhost:3000` in frontend:
-
-```javascript
-// Create frontend/.env
-VITE_API_URL=https://your-api.railway.app
-
-// Update axios calls to use:
-axios.get(`${import.meta.env.VITE_API_URL}/products/getproducts`)
-````
-
-2. **Update CORS** - In `backend/app.js`:
-
-   ```javascript
-   app.use(
-     cors({
-       origin: ["https://your-frontend.vercel.app"],
-       credentials: true,
-     })
-   );
-   ```
-
-3. **Use MongoDB Atlas** - Update `MONGO_URI` in production env
-
 ---
 
-## 📊 Database Models
-
-| Model            | Key Fields                                             |
-| ---------------- | ------------------------------------------------------ |
-| **User**         | email, password, businessName, stats                   |
-| **Product**      | name, price, cp, inventory, categoryId, minThreshold   |
-| **Category**     | name, type (SYSTEM/CUSTOM), owner                      |
-| **Sales**        | customer, product, quantity, price, cp, amount, pdfUrl |
-| **Notification** | type, message, isRead, productId                       |
-| **AuditLog**     | action, entityType, before, after                      |
-| **RestockLog**   | productId, quantity, supplier                          |
-
----
-
-## 🔧 Scripts
-
-```bash
-# Run category seeder (auto-runs on startup)
-node backend/seeds/categorySeeder.js
-
-# Migrate existing products to new category system
-node backend/migrations/migrateCategories.js
-
-# Clean database (use with caution!)
-node backend/scripts/cleanDB.js
-```
-
----
-
-## 📝 License
-
-MIT License - Free for personal and commercial use.
-
----
-
-## 👨‍💻 Developed By
-
-**Inframax** - Powering Enterprise Solutions
-
-## 📝 License
-
-This project is private and proprietary to Inframax.
-
-## 🤝 Contributing
-
-This is a private project. For any changes or improvements, please contact the development team.
-
-## 📧 Support
-
-For support or questions, please contact the development team through appropriate channels.
-
----
-
-**Built with ❤️ by the Inframax Team**
+**Built with ❤️ by Inframax Team**
