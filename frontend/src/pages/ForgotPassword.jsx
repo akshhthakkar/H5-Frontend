@@ -17,7 +17,7 @@ const ForgotPassword = () => {
         `${import.meta.env.VITE_API_URL}/pass/forgot-password`,
         values
       );
-      toast.success("Recovery instructions sent to your email");
+      toast.success(`Password reset link sent! Please check your inbox at ${values.email}`);
     } catch (error) {
       console.error(error);
       toast.error(error.response?.data?.message || "Failed to process request");

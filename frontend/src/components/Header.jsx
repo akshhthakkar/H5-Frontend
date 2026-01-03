@@ -76,7 +76,7 @@ const Header = ({ OpenSidebar }) => {
           {/* Dropdown / Sign Out */}
           <button
             onClick={handleLogout}
-            className="ml-1 md:ml-2 text-xs font-semibold text-slate-500 hover:text-red-600 transition-colors hidden sm:block"
+            className="ml-1 md:ml-2 text-xs font-semibold text-slate-500 hover:text-red-600 transition-colors"
           >
             Sign Out
           </button>

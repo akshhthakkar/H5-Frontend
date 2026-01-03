@@ -7,11 +7,14 @@ import { Link, useSearchParams, useNavigate } from "react-router-dom";
 import AuthLayout from "../layouts/AuthLayout";
 import Input from "../components/Input";
 import Button from "../components/Button";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const ResetPassword = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const [status, setStatus] = useState({ type: "", message: "" });
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const token = searchParams.get("token");
   const id = searchParams.get("id");
@@ -80,24 +83,44 @@ const ResetPassword = () => {
             <Input
               id="password"
               name="password"
-              type="password"
+              type={showPassword ? "text" : "password"}
               label="New Password"
               placeholder="••••••••"
               value={values.password}
               onChange={handleChange}
               onBlur={handleBlur}
               error={touched.password && errors.password}
+              rightElement={
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="text-gray-500 hover:text-gray-700 focus:outline-none transition-colors"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
+                </button>
+              }
             />
             <Input
               id="confirmPassword"
               name="confirmPassword"
-              type="password"
+              type={showConfirmPassword ? "text" : "password"}
               label="Confirm Password"
               placeholder="••••••••"
               value={values.confirmPassword}
               onChange={handleChange}
               onBlur={handleBlur}
               error={touched.confirmPassword && errors.confirmPassword}
+              rightElement={
+                <button
+                  type="button"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  className="text-gray-500 hover:text-gray-700 focus:outline-none transition-colors"
+                  aria-label={showConfirmPassword ? "Hide password" : "Show password"}
+                >
+                  {showConfirmPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
+                </button>
+              }
             />
 
             <Button type="submit" className="w-full" isLoading={isSubmitting}>
