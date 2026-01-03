@@ -1,229 +1,129 @@
-# H5 ERP System
+# Inframax - Admin Dashboard Frontend
 
-A full-stack Enterprise Resource Planning (ERP) system for inventory management, sales tracking, and business analytics.
-
-![Tech Stack](https://img.shields.io/badge/React-18-blue) ![Node.js](https://img.shields.io/badge/Node.js-Express-green) ![MongoDB](https://img.shields.io/badge/MongoDB-Mongoose-brightgreen)
-
----
+A modern, responsive admin dashboard built with React and Vite for managing business operations including inventory, sales, billing, and reporting.
 
 ## 🚀 Features
 
-- **User Authentication** - JWT-based login/register with Google OAuth
-- **Inventory Management** - Add/edit/delete products with images
-- **Dynamic Categories** - System + custom user categories
-- **Sales Processing** - Create sales with automatic inventory deduction
-- **Bill Generation** - PDF bills emailed to customers
-- **Profit Tracking** - Cost price vs selling price analytics
-- **Reports & Analytics** - Monthly sales, top products, dead stock, profit summary
-- **Notifications** - Low stock alerts, forecast warnings
-- **Supply Chain** - Restock products containing smart suggestions based on sales forecast
-- **System Robustness** - Atomic sales transactions, deduplicated notifications, and handling of edge cases (zero sales, dead stock accuracy)
+- **Dashboard Analytics** - Real-time business metrics and insights with interactive charts
+- **Inventory Management** - Track and manage product inventory
+- **Sales Management** - Process and monitor sales transactions
+- **Billing System** - Generate and manage bills
+- **Supply Chain** - Manage supply operations and vendors
+- **Category Management** - Organize products by categories
+- **Reports** - Comprehensive business reports and analytics
+- **User Authentication** - Secure login with Google OAuth integration
+- **Profile Management** - User profile and settings
+- **Notifications** - Real-time notifications system
+- **Responsive Design** - Mobile-friendly interface with Tailwind CSS
 
----
+## 🛠️ Tech Stack
 
-## 📁 Project Structure
+- **Framework:** React 19.1.0
+- **Build Tool:** Vite 6.3.5
+- **Styling:** Tailwind CSS 4.1.18
+- **UI Components:** Material-UI (MUI) 7.1.0
+- **State Management:** Redux Toolkit 2.8.2
+- **Routing:** React Router DOM 7.6.1
+- **Form Handling:** Formik 2.4.6 + Yup 1.6.1
+- **Charts:** Chart.js 4.4.9 with React-Chartjs-2
+- **HTTP Client:** Axios 1.9.0
+- **Authentication:** React OAuth Google 0.13.4
+- **Notifications:** React Hot Toast 2.6.0 + React Toastify 11.0.5
+- **Icons:** React Icons 5.5.0 + MUI Icons
 
-```
-H5 ERP/
-├── backend/                    # Express.js API Server
-│   ├── api/allApi.js          # Route aggregator
-│   ├── app.js                 # Main entry point
-│   ├── config/                # Database & Cloudinary config
-│   ├── controller/            # Business logic
-│   │   ├── productController.js
-│   │   ├── salesController.js
-│   │   ├── categoryController.js
-│   │   ├── reportController.js
-│   │   └── ...
-│   ├── models/                # Mongoose schemas
-│   │   ├── product.js
-│   │   ├── sales.js
-│   │   ├── category.js
-│   │   ├── user.js
-│   │   └── ...
-│   ├── routes/                # Express routes
-│   ├── middlewares/           # Auth middleware
-│   ├── utils/                 # Helpers (notifications, cloudinary, audit)
-│   ├── jobs/cronJobs.js       # Scheduled tasks
-│   ├── seeds/                 # Database seeders
-│   ├── migrations/            # Data migration scripts
-│   └── src/
-│       ├── billGenerator.js   # PDF creation (PDFKit)
-│       └── emailSender.js     # Nodemailer
-│
-└── frontend/                  # React + Vite
-    ├── src/
-    │   ├── App.jsx            # Routing
-    │   ├── pages/             # React pages
-    │   │   ├── Dashboard.jsx
-    │   │   ├── Inventory.jsx
-    │   │   ├── Sales.jsx
-    │   │   ├── Bills.jsx
-    │   │   ├── Reports.jsx
-    │   │   └── ...
-    │   ├── components/        # Reusable UI
-    │   ├── layouts/           # Page layouts
-    │   └── redux/             # State management
-    └── index.html
-```
+## 📋 Prerequisites
 
----
+Before you begin, ensure you have the following installed:
 
-## 🔄 Application Flow
+- Node.js (v18 or higher)
+- npm or yarn package manager
 
-### 1. Authentication Flow
+## 🔧 Installation
 
-```
-User → SignIn/SignUp → JWT Token → Protected Routes
-         ↓
-   Google OAuth (optional)
-```
-
-### 2. Inventory Flow
-
-```
-Add Product → Upload Image (Cloudinary)
-           → Set Prices (Sell Price + Cost Price)
-           → Assign Category
-           → Save to MongoDB
-```
-
-### 3. Sales Flow
-
-```
-Select Products → Validate Stock
-               → Deduct Inventory
-               → Create Sale Record
-               → Generate PDF Bill
-               → Upload to Cloudinary
-               → Email to Customer
-               → Trigger Notifications (if low stock)
-```
-
-### 4. Profit Calculation
-
-```
-Profit = Total Revenue - Total Cost
-       = Σ(Sell Price × Quantity) - Σ(Cost Price × Quantity)
-```
-
----
-
-## 🛠️ Installation
-
-### Prerequisites
-
-- Node.js 18+
-- MongoDB (local or Atlas)
-- Cloudinary account
-- Gmail account (for emails)
-
-### Backend Setup
+1. Clone the repository:
 
 ```bash
-cd backend
-npm install
-
-# Create .env file
-cp .env.example .env
-# Edit .env with your credentials
+git clone https://github.com/akshhthakkar/H5-Frontend.git
+cd H5-Frontend/frontend
 ```
 
-### Frontend Setup
+2. Install dependencies:
 
 ```bash
-cd frontend
 npm install
 ```
 
-### Environment Variables (.env)
+3. Set up environment variables:
+   Create a `.env` file in the frontend directory and add necessary configuration:
 
 ```env
-# MongoDB
-MONGO_URI=mongodb://localhost:27017/h5erp
-# OR for Atlas:
-# MONGO_URI=mongodb+srv://user:pass@cluster.mongodb.net/h5erp
-
-# JWT
-JWT_SECRET=your-super-secret-key
-
-# Cloudinary
-CLOUDINARY_CLOUD_NAME=your-cloud-name
-CLOUDINARY_API_KEY=your-api-key
-CLOUDINARY_API_SECRET=your-api-secret
-
-# Email (Gmail)
-EMAIL_USER=your-email@gmail.com
-EMAIL_PASS=your-app-password
-
-# Google OAuth (optional)
-GOOGLE_CLIENT_ID=your-google-client-id
-GOOGLE_CLIENT_SECRET=your-google-client-secret
+VITE_API_URL=your_api_url
+VITE_GOOGLE_CLIENT_ID=your_google_client_id
 ```
 
-### Running Locally
+## 🚀 Getting Started
+
+### Development Mode
+
+Run the development server:
 
 ```bash
-# Terminal 1 - Backend
-cd backend
-npm run dev   # or: npx nodemon server.js
-
-# Terminal 2 - Frontend
-cd frontend
 npm run dev
 ```
 
----
+## 🎨 Key Features Details
 
-## 📡 API Endpoints
+### Authentication
 
-| Method            | Endpoint                           | Description            |
-| ----------------- | ---------------------------------- | ---------------------- |
-| **Auth**          |                                    |                        |
-| POST              | `/api/user/register`               | Register new user      |
-| POST              | `/api/user/login`                  | Login                  |
-| GET               | `/api/user/google`                 | Google OAuth           |
-| **Products**      |                                    |                        |
-| GET               | `/api/products/getproducts`        | List all products      |
-| POST              | `/api/products/create`             | Create product         |
-| DELETE            | `/api/products/delete/:id`         | Delete product         |
-| POST              | `/api/products/supply`             | Add stock              |
-| **Categories**    |                                    |                        |
-| GET               | `/api/categories`                  | List categories        |
-| POST              | `/api/categories`                  | Create custom category |
-| PUT               | `/api/categories/:id`              | Update category        |
-| DELETE            | `/api/categories/:id`              | Delete category        |
-| **Sales**         |                                    |                        |
-| POST              | `/api/sales/create`                | Create sale            |
-| GET               | `/api/sales/show`                  | List all sales         |
-| GET               | `/api/sales/download/:id`          | Download bill          |
-| **Reports**       |                                    |                        |
-| GET               | `/api/report/monthly/:year/:month` | Monthly sales          |
-| GET               | `/api/report/top-products`         | Top 5 products         |
-| GET               | `/api/report/dead-stock`           | Dead stock report      |
-| GET               | `/api/report/profit-summary`       | Profit summary         |
-| **Notifications** |                                    |                        |
-| GET               | `/api/notifications`               | List notifications     |
-| PUT               | `/api/notifications/:id/read`      | Mark as read           |
+- Google OAuth 2.0 integration
+- Email/Password authentication
+- Password reset functionality
+- Protected routes
 
----
+### State Management
 
-## 🚀 Deployment Guide
+- Redux Toolkit for global state
+- Custom hooks for local state management
+- Persistent authentication state
 
-### Backend Deployment (Render / Railway / Heroku)
+### UI/UX
 
-1. **Build Command**: `npm install`
-2. **Start Command**: `node app.js`
-3. **Environment Variables**: Add all from `.env`
+- Modern and clean interface
+- Responsive design for all screen sizes
+- Loading states and error handling
+- Toast notifications for user feedback
+- Drag and drop functionality
 
-### Frontend Deployment (Vercel / Netlify)
+### Charts & Analytics
 
-1. **Build Command**: `npm run build`
-2. **Output Directory**: `dist`
-3. **Environment Variables**:
-   ```
-   VITE_API_URL=https://your-backend-url.com/api
-   ```
+- Interactive charts using Chart.js
+- Real-time data visualization
+- Multiple chart types support
+
+## 🌐 Deployment
+
+The project is configured for deployment on Vercel. The `vercel.json` file contains the necessary configuration.
+
+To deploy:
+
+1. Push your code to GitHub
+2. Connect your repository to Vercel
+3. Configure environment variables in Vercel dashboard
+4. Deploy
+
+## 👥 Contributors
+
+This project was developed by:
+
+- **Aksh Thakkar** - [@akshhthakkar](https://github.com/akshhthakkar)
+- **Yash Chauhan** - [@Yash08238](https://github.com/Yash08238)
+- **Smit Chauhan** - [@Smit070](https://github.com/Smit070)
+
+## 🏢 Company
+
+**Inframax**VITE_API_URL=https://your-backend-url.com/api
+
+````
 
 ### ⚠️ Pre-Deployment Checklist
 
@@ -242,13 +142,13 @@ npm run dev
 
 1. **Update API URLs** - Replace all `http://localhost:3000` in frontend:
 
-   ```javascript
-   // Create frontend/.env
-   VITE_API_URL=https://your-api.railway.app
+```javascript
+// Create frontend/.env
+VITE_API_URL=https://your-api.railway.app
 
-   // Update axios calls to use:
-   axios.get(`${import.meta.env.VITE_API_URL}/products/getproducts`)
-   ```
+// Update axios calls to use:
+axios.get(`${import.meta.env.VITE_API_URL}/products/getproducts`)
+````
 
 2. **Update CORS** - In `backend/app.js`:
 
@@ -303,3 +203,19 @@ MIT License - Free for personal and commercial use.
 ## 👨‍💻 Developed By
 
 **Inframax** - Powering Enterprise Solutions
+
+## 📝 License
+
+This project is private and proprietary to Inframax.
+
+## 🤝 Contributing
+
+This is a private project. For any changes or improvements, please contact the development team.
+
+## 📧 Support
+
+For support or questions, please contact the development team through appropriate channels.
+
+---
+
+**Built with ❤️ by the Inframax Team**
