@@ -9,9 +9,13 @@
 ![Redux](https://img.shields.io/badge/Redux-2.8.2-764ABC?logo=redux)
 ![License](https://img.shields.io/badge/License-Proprietary-red)
 
+### 🚀 [Live Demo](https://h5-erp.vercel.app/)
+
 </div>
 
 A modern, responsive admin dashboard built with React and Vite for managing inventory, sales, billing, supply chain, and business analytics.
+
+**Currently deployed at:** [https://h5-erp.vercel.app/](https://h5-erp.vercel.app/)
 
 ## ✨ Features
 
