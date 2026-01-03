@@ -48,7 +48,12 @@ const ResetPassword = () => {
       setTimeout(() => navigate("/"), 2000);
     } catch (error) {
       console.error(error);
-      toast.error(error.response?.data?.message || "Failed to reset password");
+      if (error.response?.status === 403) {
+        toast.error("Password reset not available for Google accounts");
+        setTimeout(() => navigate("/"), 2000);
+      } else {
+        toast.error(error.response?.data?.message || "Failed to reset password");
+      }
     } finally {
       setSubmitting(false);
     }
@@ -126,6 +131,15 @@ const ResetPassword = () => {
             <Button type="submit" className="w-full" isLoading={isSubmitting}>
               Reset Password
             </Button>
+
+            <div className="mt-6 text-center text-sm text-gray-600">
+              <Link
+                to="/"
+                className="text-sm font-medium text-slate-600 hover:text-slate-900"
+              >
+                ← Back to Sign In
+              </Link>
+            </div>
           </Form>
         )}
       </Formik>

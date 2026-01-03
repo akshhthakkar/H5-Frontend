@@ -13,7 +13,10 @@ import {
   BsPhone,
   BsGenderAmbiguous,
   BsShieldLock,
+  BsKey,
 } from "react-icons/bs";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 
 const Profile = () => {
   const user = useSelector(selectUser);
@@ -28,6 +31,15 @@ const Profile = () => {
   const [imageFile, setImageFile] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [passwordData, setPasswordData] = useState({
+    currentPassword: "",
+    newPassword: "",
+    confirmPassword: "",
+  });
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [changingPassword, setChangingPassword] = useState(false);
 
   // Helper to get image source
   const getImageSrc = () => {
@@ -70,6 +82,40 @@ const Profile = () => {
       toast.error("Failed to update profile");
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleChangePassword = async () => {
+    if (passwordData.newPassword !== passwordData.confirmPassword) {
+      toast.error("New passwords don't match");
+      return;
+    }
+    if (passwordData.newPassword.length < 8) {
+      toast.error("Password must be at least 8 characters");
+      return;
+    }
+
+    setChangingPassword(true);
+    try {
+      await axios.post(
+        `${import.meta.env.VITE_API_URL}/user/change-password`,
+        {
+          userId,
+          currentPassword: passwordData.currentPassword,
+          newPassword: passwordData.newPassword,
+        }
+      );
+      toast.success("Password changed successfully");
+      setPasswordData({
+        currentPassword: "",
+        newPassword: "",
+        confirmPassword: "",
+      });
+    } catch (error) {
+      console.error("Password change failed", error);
+      toast.error(error.response?.data?.message || "Failed to change password");
+    } finally {
+      setChangingPassword(false);
     }
   };
 
@@ -213,6 +259,87 @@ const Profile = () => {
               )}
             </div>
           </Card>
+
+          {/* Password Management Section */}
+          {user?.authProvider === "local" ? (
+            <Card title="Change Password" className="mt-6">
+              <div className="space-y-4">
+                <Input
+                  label="Current Password"
+                  type={showCurrentPassword ? "text" : "password"}
+                  value={passwordData.currentPassword}
+                  onChange={(e) =>
+                    setPasswordData({ ...passwordData, currentPassword: e.target.value })
+                  }
+                  icon={BsKey}
+                  rightElement={
+                    <button
+                      type="button"
+                      onClick={() => setShowCurrentPassword(!showCurrentPassword)}
+                      className="text-gray-500 hover:text-gray-700 focus:outline-none transition-colors"
+                    >
+                      {showCurrentPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
+                    </button>
+                  }
+                />
+                <Input
+                  label="New Password"
+                  type={showNewPassword ? "text" : "password"}
+                  value={passwordData.newPassword}
+                  onChange={(e) =>
+                    setPasswordData({ ...passwordData, newPassword: e.target.value })
+                  }
+                  icon={BsKey}
+                  rightElement={
+                    <button
+                      type="button"
+                      onClick={() => setShowNewPassword(!showNewPassword)}
+                      className="text-gray-500 hover:text-gray-700 focus:outline-none transition-colors"
+                    >
+                      {showNewPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
+                    </button>
+                  }
+                />
+                <Input
+                  label="Confirm New Password"
+                  type={showConfirmPassword ? "text" : "password"}
+                  value={passwordData.confirmPassword}
+                  onChange={(e) =>
+                    setPasswordData({ ...passwordData, confirmPassword: e.target.value })
+                  }
+                  icon={BsKey}
+                  rightElement={
+                    <button
+                      type="button"
+                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                      className="text-gray-500 hover:text-gray-700 focus:outline-none transition-colors"
+                    >
+                      {showConfirmPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
+                    </button>
+                  }
+                />
+              </div>
+              <div className="mt-6 pt-6 border-t border-slate-100 flex justify-end">
+                <Button onClick={handleChangePassword} isLoading={changingPassword}>
+                  Update Password
+                </Button>
+              </div>
+            </Card>
+          ) : (
+            <Card title="Account Authentication" className="mt-6">
+              <div className="flex items-center gap-4 p-4 bg-blue-50 rounded-lg border border-blue-100">
+                <FcGoogle size={32} />
+                <div>
+                  <p className="text-sm font-medium text-slate-700">
+                    You signed in using Google
+                  </p>
+                  <p className="text-xs text-slate-500 mt-1">
+                    Password management is not available for Google accounts
+                  </p>
+                </div>
+              </div>
+            </Card>
+          )}
         </div>
       </div>
     </div>

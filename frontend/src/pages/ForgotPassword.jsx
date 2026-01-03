@@ -17,10 +17,14 @@ const ForgotPassword = () => {
         `${import.meta.env.VITE_API_URL}/pass/forgot-password`,
         values
       );
-      toast.success(`Password reset link sent! Please check your inbox at ${values.email}`);
+      toast.success("If an account exists, a reset link has been sent. Please check your inbox.");
     } catch (error) {
       console.error(error);
-      toast.error(error.response?.data?.message || "Failed to process request");
+      if (error.response?.status === 403) {
+        toast.error("This account uses Google Sign-In. Please continue using Google to log in.");
+      } else {
+        toast.error(error.response?.data?.message || "Failed to process request");
+      }
     } finally {
       setSubmitting(false);
     }

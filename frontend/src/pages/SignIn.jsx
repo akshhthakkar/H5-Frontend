@@ -99,8 +99,8 @@ const SignIn = () => {
             <Input
               id="username"
               name="username"
-              label="Username"
-              placeholder="Enter your username"
+              label="Username or Email"
+              placeholder="Enter your username or email"
               value={values.username}
               onChange={handleChange}
               onBlur={handleBlur}
