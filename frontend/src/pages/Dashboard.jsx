@@ -38,7 +38,7 @@ const Dashboard = () => {
 
       const products = productsRes.data.result || [];
       const sales = salesRes.data.result || [];
-      const notifs = notifRes.data.result || [];
+      const notifs = notifRes.data.result?.notifications || notifRes.data.result || [];
 
       // Calculate KPI
       const revenue = sales.reduce((acc, sale) => acc + (sale.amount || 0), 0);
@@ -69,17 +69,17 @@ const Dashboard = () => {
   };
 
   const KPICard = ({ title, value, icon, colorClass, borderClass }) => (
-    <Card className={`flex items-center p-4 border-l-4 ${borderClass}`}>
+    <Card className={`flex items-center p-3 md:p-4 border-l-4 ${borderClass}`}>
       <div
-        className={`w-12 h-12 rounded flex items-center justify-center text-white mr-4 ${colorClass}`}
+        className={`w-10 h-10 md:w-12 md:h-12 rounded flex items-center justify-center text-white mr-3 md:mr-4 flex-shrink-0 ${colorClass}`}
       >
         {icon}
       </div>
-      <div>
-        <p className="text-sm font-medium text-slate-500 uppercase tracking-wide">
+      <div className="min-w-0">
+        <p className="text-xs md:text-sm font-medium text-slate-500 uppercase tracking-wide truncate">
           {title}
         </p>
-        <h3 className="text-2xl font-bold text-slate-900">
+        <h3 className="text-lg md:text-2xl font-bold text-slate-900">
           {loading ? "-" : value}
         </h3>
       </div>
@@ -88,17 +88,17 @@ const Dashboard = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-end mb-4">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-3 mb-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-800">
+          <h1 className="text-xl md:text-2xl font-bold text-slate-800">
             Executive Dashboard
           </h1>
-          <p className="text-sm text-slate-500">
+          <p className="text-xs md:text-sm text-slate-500">
             Overview of key performance indicators.
           </p>
         </div>
         <Link to="/reports">
-          <Button variant="secondary" className="flex items-center gap-2">
+          <Button variant="secondary" className="flex items-center gap-2 w-full sm:w-auto justify-center">
             View Reports <BsArrowRight />
           </Button>
         </Link>
@@ -135,23 +135,23 @@ const Dashboard = () => {
         />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
         <div className="lg:col-span-2">
           <Card title="Recent Activity" className="h-full">
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm text-left">
+            <div className="overflow-x-auto -mx-4 md:mx-0">
+              <table className="w-full text-sm text-left min-w-[500px]">
                 <thead className="text-xs text-slate-500 uppercase bg-slate-50 border-b">
                   <tr>
-                    <th className="px-4 py-3 bg-slate-50 text-slate-700">
+                    <th className="px-3 md:px-4 py-2 md:py-3 bg-slate-50 text-slate-700">
                       Customer
                     </th>
-                    <th className="px-4 py-3 bg-slate-50 text-slate-700">
+                    <th className="px-3 md:px-4 py-2 md:py-3 bg-slate-50 text-slate-700">
                       Product
                     </th>
-                    <th className="px-4 py-3 bg-slate-50 text-slate-700 text-right">
+                    <th className="px-3 md:px-4 py-2 md:py-3 bg-slate-50 text-slate-700 text-right">
                       Amount
                     </th>
-                    <th className="px-4 py-3 bg-slate-50 text-slate-700">
+                    <th className="px-3 md:px-4 py-2 md:py-3 bg-slate-50 text-slate-700">
                       Date
                     </th>
                   </tr>
@@ -178,19 +178,19 @@ const Dashboard = () => {
                         key={i}
                         className="border-b last:border-0 hover:bg-slate-50"
                       >
-                        <td className="px-4 py-3 font-medium text-slate-900">
+                        <td className="px-3 md:px-4 py-2 md:py-3 font-medium text-slate-900">
                           {sale.customer}
                         </td>
-                        <td className="px-4 py-3 text-slate-600">
+                        <td className="px-3 md:px-4 py-2 md:py-3 text-slate-600">
                           {sale.product ? sale.product.productName : "N/A"}
                           <span className="text-xs text-slate-400 block">
                             Qty: {sale.quantity}
                           </span>
                         </td>
-                        <td className="px-4 py-3 text-right font-medium text-slate-900">
+                        <td className="px-3 md:px-4 py-2 md:py-3 text-right font-medium text-slate-900">
                           ₹{sale.amount}
                         </td>
-                        <td className="px-4 py-3 text-slate-500">
+                        <td className="px-3 md:px-4 py-2 md:py-3 text-slate-500">
                           {new Date(sale.date).toLocaleDateString()}
                         </td>
                       </tr>
@@ -222,18 +222,18 @@ const Dashboard = () => {
               ) : (
                 notifications.map((notif, i) => (
                   <div
-                    key={i}
+                    key={notif._id || i}
                     className="flex items-start gap-3 p-3 bg-slate-50 rounded border border-slate-100"
                   >
                     <div className="text-orange-500 mt-0.5">
                       <BsExclamationTriangle />
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <p className="text-sm font-medium text-slate-800">
-                        Low Stock: {notif.productName}
+                        {notif.message || `Low Stock: ${notif.productName}`}
                       </p>
                       <p className="text-xs text-slate-500">
-                        {notif.inventory} units remaining
+                        {notif.createdAt ? new Date(notif.createdAt).toLocaleDateString() : `${notif.inventory} units remaining`}
                       </p>
                     </div>
                   </div>

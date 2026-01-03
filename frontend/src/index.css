@@ -20,12 +20,17 @@
   --radius-md: 6px;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: var(--font-main);
   background-color: var(--color-bg-app);
   color: var(--color-text-main);
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 h1,
@@ -75,13 +80,13 @@ h6 {
   }
 
   .card {
-    @apply bg-white border border-gray-200 p-6;
+    @apply bg-white border border-gray-200 p-4 md:p-6;
     border-radius: var(--radius-md);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   }
 
   .title-lg {
-    @apply text-2xl font-semibold;
+    @apply text-xl md:text-2xl font-semibold;
     color: var(--color-primary);
   }
 
@@ -90,12 +95,12 @@ h6 {
     @apply w-full border-collapse text-sm;
   }
   th {
-    @apply p-3 text-left font-semibold;
+    @apply p-2 md:p-3 text-left font-semibold text-xs md:text-sm;
     background-color: var(--color-primary);
     color: white;
   }
   td {
-    @apply border-b border-gray-100 p-3;
+    @apply border-b border-gray-100 p-2 md:p-3 text-xs md:text-sm;
     color: var(--color-primary);
   }
   tr:last-child td {
@@ -103,5 +108,22 @@ h6 {
   }
   tr:hover td {
     background-color: rgba(95, 149, 152, 0.1);
+  }
+}
+
+/* Mobile-specific utilities */
+@media (max-width: 768px) {
+  .card {
+    border-radius: 8px;
+  }
+
+  table {
+    font-size: 0.813rem;
+  }
+
+  /* Improve touch targets on mobile */
+  button,
+  a {
+    min-height: 44px;
   }
 }

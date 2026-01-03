@@ -10,35 +10,27 @@ const MainLayout = ({ children }) => {
   };
 
   return (
-    <div
-      className="grid-container"
-      style={{
-        display: "grid",
-        gridTemplateColumns: openSidebarToggle ? "260px 1fr" : "260px 1fr", // Simplify for now
-        gridTemplateRows: "60px 1fr",
-        gridTemplateAreas: '"sidebar header" "sidebar main"',
-        height: "100vh",
-        transition: "all 0.3s",
-      }}
-    >
+    <div className="h-screen flex overflow-hidden relative">
       <Sidebar
         openSidebarToggle={openSidebarToggle}
         OpenSidebar={OpenSidebar}
       />
-      <Header OpenSidebar={OpenSidebar} />
-      <main
-        className="main-container"
-        style={{
-          gridArea: "main",
-          padding: "24px",
-          overflowY: "auto",
-          backgroundColor: "#f4f7fa",
-        }}
-      >
-        {children}
-      </main>
-
-      {/* Mobile styling overrides would be in CSS media queries */}
+      
+      <div className="flex flex-col flex-1 overflow-hidden">
+        <Header OpenSidebar={OpenSidebar} />
+        
+        <main className="flex-1 overflow-y-auto bg-gray-50 p-4 md:p-6">
+          {children}
+        </main>
+      </div>
+      
+      {/* Mobile overlay */}
+      {openSidebarToggle && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+          onClick={OpenSidebar}
+        />
+      )}
     </div>
   );
 };

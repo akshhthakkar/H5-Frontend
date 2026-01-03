@@ -24,17 +24,9 @@ const Sidebar = ({ openSidebarToggle, OpenSidebar }) => {
 
   return (
     <aside
-      id="sidebar"
-      className={openSidebarToggle ? "sidebar-responsive" : ""}
-      style={{
-        gridArea: "sidebar",
-        height: "100%",
-        backgroundColor: "#1e293b", // Slate 800 - Formal Dark
-        color: "#e2e8f0", // Slate 200
-        display: "flex",
-        flexDirection: "column",
-        boxShadow: "1px 0 0 rgba(0,0,0,0.1)",
-      }}
+      className={`bg-slate-800 text-slate-200 flex flex-col shadow-lg transition-transform duration-300 ease-in-out
+        fixed md:relative h-full w-64 z-50
+        ${openSidebarToggle ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}
     >
       <div className="p-5 border-b border-slate-700 flex justify-between items-center">
         <div className="flex items-center text-white font-semibold text-lg tracking-wide">

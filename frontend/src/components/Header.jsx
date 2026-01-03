@@ -23,29 +23,29 @@ const Header = ({ OpenSidebar }) => {
       : "Dashboard";
 
   return (
-    <header className="h-14 bg-white border-b border-gray-200 flex items-center justify-between px-6 z-10">
-      <div className="flex items-center">
+    <header className="h-14 bg-white border-b border-gray-200 flex items-center justify-between px-3 md:px-6 z-20 shrink-0 relative">
+      <div className="flex items-center flex-1 min-w-0">
         <button
-          className="mr-4 text-gray-500 hover:text-gray-700 md:hidden"
+          className="mr-2 md:mr-4 text-gray-500 hover:text-gray-700 md:hidden flex-shrink-0"
           onClick={OpenSidebar}
         >
           <BsList size={24} />
         </button>
-        <div className="flex items-center text-sm text-gray-500">
+        <div className="flex items-center text-xs md:text-sm text-gray-500 truncate">
           <span
-            className="text-gray-400 hover:text-gray-600 cursor-pointer"
+            className="text-gray-400 hover:text-gray-600 cursor-pointer hidden sm:inline"
             onClick={() => navigate("/dashboard")}
           >
             Home
           </span>
-          <BsArrowRightShort size={20} className="mx-1" />
-          <span className="font-medium text-gray-800">{breadcrumb}</span>
+          <BsArrowRightShort size={20} className="mx-1 hidden sm:inline" />
+          <span className="font-medium text-gray-800 truncate">{breadcrumb}</span>
         </div>
       </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2 md:gap-4 flex-shrink-0">
         {/* Profile Dropdown Area (Simplified for now) */}
-        <div className="relative group flex items-center gap-3 pl-4 border-l border-gray-100">
+        <div className="relative group flex items-center gap-2 md:gap-3 pl-2 md:pl-4 border-l border-gray-100">
           <div className="text-right hidden md:block">
             <p className="text-sm font-semibold text-gray-800 leading-none">
               {user?.username || "User"}
@@ -55,7 +55,7 @@ const Header = ({ OpenSidebar }) => {
             </p>
           </div>
 
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-teal-500 to-cyan-600 p-0.5 shadow-md cursor-pointer hover:shadow-lg transition-all">
+          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-teal-500 to-cyan-600 p-0.5 shadow-md cursor-pointer hover:shadow-lg transition-all" onClick={() => navigate('/profile')}>
             <div className="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden">
               {user?.image ? (
                 <img
@@ -76,7 +76,7 @@ const Header = ({ OpenSidebar }) => {
           {/* Dropdown / Sign Out */}
           <button
             onClick={handleLogout}
-            className="ml-2 text-xs font-semibold text-slate-500 hover:text-red-600 transition-colors"
+            className="ml-1 md:ml-2 text-xs font-semibold text-slate-500 hover:text-red-600 transition-colors hidden sm:block"
           >
             Sign Out
           </button>
