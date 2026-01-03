@@ -8,6 +8,7 @@ const Input = ({
   containerClass = "mb-4",
   id,
   icon: Icon,
+  rightElement,
   ...props
 }) => {
   return (
@@ -31,12 +32,19 @@ const Input = ({
           className={`input-field w-full rounded-lg border-gray-300 focus:border-teal-500 focus:ring-teal-500 transition-colors ${
             Icon ? "pl-10" : ""
           } ${
+            rightElement ? "pr-10" : ""
+          } ${
             error
               ? "border-red-500 focus:border-red-500 focus:ring-red-200"
               : ""
           } ${className}`}
           {...props}
         />
+        {rightElement && (
+          <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
+            {rightElement}
+          </div>
+        )}
       </div>
       {error && (
         <span className="mt-1 text-xs text-red-500 font-medium">{error}</span>
