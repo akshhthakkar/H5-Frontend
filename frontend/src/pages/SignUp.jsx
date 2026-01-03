@@ -130,7 +130,7 @@ const SignUp = () => {
               onBlur={handleBlur}
               error={touched.mobile && errors.mobile}
             />
-            <div className="relative">
+            <div className="relative mb-4">
               <Input
                 id="password"
                 name="password"
@@ -141,16 +141,18 @@ const SignUp = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 error={touched.password && errors.password}
+                containerClass="mb-0"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-[38px] text-gray-500 hover:text-gray-700 focus:outline-none"
+                className="absolute right-3 top-9 text-gray-500 hover:text-gray-700 focus:outline-none transition-colors"
+                aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
               </button>
             </div>
-            <div className="relative">
+            <div className="relative mb-4">
               <Input
                 id="confirmPassword"
                 name="confirmPassword"
@@ -161,11 +163,13 @@ const SignUp = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 error={touched.confirmPassword && errors.confirmPassword}
+                containerClass="mb-0"
               />
               <button
                 type="button"
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                className="absolute right-3 top-[38px] text-gray-500 hover:text-gray-700 focus:outline-none"
+                className="absolute right-3 top-9 text-gray-500 hover:text-gray-700 focus:outline-none transition-colors"
+                aria-label={showConfirmPassword ? "Hide password" : "Show password"}
               >
                 {showConfirmPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
               </button>
