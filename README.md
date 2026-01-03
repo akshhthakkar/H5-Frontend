@@ -1,4 +1,4 @@
-# H5 ERP FRONTEND
+# Inframax Admin Dashboard
 
 <div align="center">
 
