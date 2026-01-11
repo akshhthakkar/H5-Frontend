@@ -13,7 +13,7 @@
 
 </div>
 
-A modern, responsive admin dashboard built with React and Vite for managing inventory, sales, billing, supply chain, and business analytics.
+A modern, responsive admin dashboard built with React and Vite for managing inventory, sales, billing, supply chain and business analytics.
 
 **Currently deployed at:** [https://h5-erp.vercel.app/](https://h5-erp.vercel.app/)
 
