@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
+import Landing from "./pages/Landing";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import ForgotPassword from "./pages/ForgotPassword";
@@ -14,23 +15,27 @@ import Supply from "./pages/Supply";
 import Profile from "./pages/Profile";
 import Notifications from "./pages/Notifications";
 import Categories from "./pages/Categories";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Terms from "./pages/Terms";
+import CookiePolicy from "./pages/CookiePolicy";
 import NotFound from "./pages/NotFound";
 import AuthCallback from "./pages/AuthCallback";
 import { useSelector, useDispatch } from "react-redux";
 import { updateUser } from "./redux/UsersSlice";
 
+import { Toaster } from "react-hot-toast";
+import axios from "axios";
+
 // Protected Route Wrapper
 const ProtectedRoute = ({ children }) => {
   const { user } = useSelector((state) => state.user);
   if (!user) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/login" replace />;
   }
   return <MainLayout>{children}</MainLayout>;
 };
-
-import { Toaster } from "react-hot-toast";
-
-import axios from "axios";
 
 function App() {
   const { token, user } = useSelector((state) => state.user);
@@ -63,11 +68,17 @@ function App() {
       <Toaster position="top-right" reverseOrder={false} />
       <Routes>
         {/* Public Routes */}
-        <Route path="/" element={<SignIn />} />
+        <Route path="/" element={<Landing />} />
+        <Route path="/login" element={<SignIn />} />
         <Route path="/register" element={<SignUp />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/reset" element={<ResetPassword />} />
         <Route path="/auth/callback" element={<AuthCallback />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/cookie-policy" element={<CookiePolicy />} />
 
         {/* Protected Routes directly wrapped */}
         <Route
